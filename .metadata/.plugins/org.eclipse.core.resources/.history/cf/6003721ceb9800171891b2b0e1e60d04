@@ -2,6 +2,8 @@ package com.exercises.logic;
 
 import java.util.Scanner;
 
+
+
 public class MigratoryBirds {
 	
     static int migratoryBirds(int n, int[] ar) {
