@@ -1,0 +1,73 @@
+package com.exercises.logic;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class test {
+	
+	
+    static List<Integer> greatestFlightRangeDrones(Integer numberOfRequiredDrones, List<Drone> drones, List<Integer> inMaintenanceDrones) {
+        // TODO: implement this function
+        
+    	List<Integer> lista = new ArrayList<>();
+        
+        if (numberOfRequiredDrones > 0) {
+        	
+        	int maxValue = drones.get(0).getFlightRange(); // get First element
+        	int count = 1;
+        	
+        	for (int i = 0 ; i < drones.size(); i++) {
+        		
+        		//maxValue = Math.max(drones.get(i).getFlightRange(), drones.get(drones.size()).getFlightRange());
+        		
+        		// get Current value
+        		if ( drones.get(i).getFlightRange() > maxValue ) { 
+        			count++;
+        			lista.add(drones.get(i).getId()); // get FlightRange
+        			
+        		} 
+        		
+        		if (numberOfRequiredDrones == count) {
+        			break;
+        		}
+        		
+        	}
+                      
+        }
+        
+        return lista;
+
+
+    }	
+	
+	
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        int numberOfDrones = 3;
+        int numberOfDronesInMaintenance = 3;
+        int numberOfRequiredDrones = 3;
+        
+        List<Drone> drones = new ArrayList<>();
+        List<Integer> inMaintenanceDrones = new ArrayList<>();
+
+        for(int i=0; i< numberOfDrones; i++) {
+            drones.add(new Drone(in.nextInt(), in.nextInt()));
+        }
+
+        for(int i=0; i< numberOfDronesInMaintenance; i++) {
+            inMaintenanceDrones.add(in.nextInt());
+        }
+        
+        List<Integer> greatestFlightRangeDrones = greatestFlightRangeDrones(numberOfRequiredDrones, drones, inMaintenanceDrones);
+
+        for(int i=0; i < greatestFlightRangeDrones.size(); i++) {
+            System.out.println(greatestFlightRangeDrones.get(i));
+        }        
+        
+
+    }
+}

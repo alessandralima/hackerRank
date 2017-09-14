@@ -1,0 +1,61 @@
+package com.exercises.logic;
+
+import java.util.Scanner;
+
+public class MigratoryBirds {
+	
+    static int migratoryBirds(int n, int[] ar) {
+        // Complete this function
+        int countBird = 0;
+    	int minId=ar[0];
+        int nextN=0;
+        
+        int previousPosition=-1;
+        int previousCount=-1;
+        
+    	if (n >= 5) {
+    		
+    		for(int i=1; i <= n; i++) {
+    			
+                for (int j=0; j < ar.length; j++) {
+                    
+                    if(i == ar[j]) {
+                        countBird+=1;
+                    }                
+                }
+                
+                if(previousPosition == -1) {
+                    previousPosition = i;
+                    previousCount = countBird;                   
+                } else {
+                    System.out.println("i=" + i + " previousPosition="+ previousPosition + 
+                    		" countBird=" + countBird + " previousCount="+previousCount );
+                    if ( countBird > previousCount) {
+                        previousPosition = i;
+                        previousCount = countBird;     
+                    }
+                    
+                }
+                
+                countBird=0;
+                
+    			
+    		}
+    	}
+    	
+    	return previousPosition;        
+
+
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] ar = new int[n];
+        for(int ar_i = 0; ar_i < n; ar_i++){
+            ar[ar_i] = in.nextInt();
+        }
+        int result = migratoryBirds(n, ar);
+        System.out.println(result);
+    }
+}
